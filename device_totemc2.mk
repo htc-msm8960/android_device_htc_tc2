@@ -53,12 +53,12 @@ PRODUCT_COPY_FILES += device/htc/totemc2/configs/AudioBTID.csv:system/etc/AudioB
 #    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
 # Camera
-PRODUCT_PACKAGES += \
-    camera.msm8930
+#PRODUCT_PACKAGES += \
+#    camera.msm8960
 
 # GPS
-PRODUCT_PACKAGES += \
-    gps.msm8930
+#PRODUCT_PACKAGES += \
+#    gps.msm8960
 
 # Recovery
 PRODUCT_PACKAGES += \
