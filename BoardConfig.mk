@@ -45,7 +45,7 @@ BOARD_KERNEL_PAGESIZE := 2048
 BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
-TARGET_KERNEL_CONFIG := tc2_defconfig
+TARGET_KERNEL_CONFIG := tc2_nocam_defconfig
 
 # Audio
 BOARD_USES_FLUENCE_INCALL := true
@@ -68,8 +68,6 @@ BOARD_HAVE_NEW_QC_GPS := true
 # Use libril in the device tree
 BOARD_PROVIDES_LIBRIL := true
 
-
-
 # Wifi related defines
 WIFI_BAND                        := 802_11_ABG
 BOARD_WPA_SUPPLICANT_DRIVER      := NL80211
@@ -84,27 +82,6 @@ WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path
 WIFI_DRIVER_MODULE_NAME          := bcmdhd
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/bcmdhd.ko"
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
-
-# cat /proc/emmc
-#dev:        size     erasesize name
-#mmcblk0p23: 000ffa00 00000200 "misc"
-#mmcblk0p22: 00fffe00 00000200 "recovery"
-#mmcblk0p21: 01000000 00000200 "boot"
-#mmcblk0p33: 67fffc00 00000200 "system"
-#mmcblk0p30: 00140200 00000200 "local"
-#mmcblk0p34: 0ffffe00 00000200 "cache"
-#mmcblk0p35: 97fffe00 00000200 "userdata"
-#mmcblk0p26: 01400000 00000200 "devlog"
-#mmcblk0p28: 00040000 00000200 "pdata"
-#mmcblk0p36: 27be00000 00000200 "fat"
-#mmcblk0p31: 00010000 00000200 "extra"
-#mmcblk0p17: 02d00000 00000200 "radio"
-#mmcblk0p18: 00a00000 00000200 "adsp"
-#mmcblk0p16: 00100000 00000200 "dsps"
-#mmcblk0p19: 00500000 00000200 "wcnss"
-#mmcblk0p20: 007ffa00 00000200 "radio_config"
-#mmcblk0p24: 00400000 00000200 "modem_st1"
-#mmcblk0p25: 00400000 00000200 "modem_st2"
 
 # Filesystem
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -132,3 +109,25 @@ RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888"
 TW_INCLUDE_DUMLOCK := true
 TW_INCLUDE_JB_CRYPTO := true
+
+# cat /proc/emmc
+#dev:        size     erasesize name
+#mmcblk0p22: 000ffa00 00000200 "misc"
+#mmcblk0p21: 00fffe00 00000200 "recovery"
+#mmcblk0p20: 01000000 00000200 "boot"
+#mmcblk0p32: 54fffc00 00000200 "system"
+#mmcblk0p29: 00140200 00000200 "local"
+#mmcblk0p33: 0dfffe00 00000200 "cache"
+#mmcblk0p34: 49fffe00 00000200 "userdata"
+#mmcblk0p25: 01400000 00000200 "devlog"
+#mmcblk0p27: 00040000 00000200 "pdata"
+#mmcblk0p35: 1097fe000 00000200 "fat"
+#mmcblk0p30: 00010000 00000200 "extra"
+#mmcblk0p16: 02d00000 00000200 "radio"
+#mmcblk0p17: 00a00000 00000200 "adsp"
+#mmcblk0p15: 00100000 00000200 "dsps"
+#mmcblk0p18: 00500000 00000200 "wcnss"
+#mmcblk0p19: 007ffa00 00000200 "radio_config"
+#mmcblk0p23: 00400000 00000200 "modem_st1"
+#mmcblk0p24: 00400000 00000200 "modem_st2"
+#mmcblk0p31: 0616a000 00000200 "reserve"
