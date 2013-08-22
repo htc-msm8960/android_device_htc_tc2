@@ -22,13 +22,12 @@ $(call inherit-product, device/htc/msm8960-common/msm8960.mk)
 DEVICE_PACKAGE_OVERLAYS += device/htc/totemc2/overlay
 
 # Boot ramdisk setup
-PRODUCT_PACKAGES += \
-    fstab.qcom \
-    remount.qcom \
-    init.qcom.sh \
-    init.qcom.rc \
-    init.qcom.usb.rc \
-    ueventd.qcom.rc
+PRODUCT_COPY_FILES += \
+    device/htc/totemc2/ramdisk/fstab.tc2:root/fstab.tc2 \
+    device/htc/totemc2/ramdisk/init.tc2.rc:root/init.tc2.rc \
+    device/htc/totemc2/ramdisk/init.tc2.usb.rc:root/init.tc2.usb.rc \
+    device/htc/totemc2/ramdisk/ueventd.tc2.rc:root/ueventd.tc2.rc \
+    device/htc/totemc2/ramdisk/remount.tc2:root/remount.tc2
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
@@ -160,7 +159,7 @@ PRODUCT_COPY_FILES += \
 
 # Recovery
 PRODUCT_COPY_FILES += \
-    device/htc/totemc2/rootdir/etc/fstab.qcom:recovery/root/fstab.qcom
+    device/htc/totemc2/ramdisk/fstab.tc2:recovery/root/fstab.tc2
 
 # Torch
 PRODUCT_PACKAGES += \

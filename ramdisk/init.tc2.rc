@@ -18,12 +18,14 @@ on init
     mkdir /devlog 0700 root root
 
 on emmc-fs
+    # mount all mmc partitions
+    mount_all /fstab.tc2
+
     # msm8960 firmware partitions
     mkdir /tombstones 0771 system system
     mkdir /tombstones/lpass 0771 system system
     
-    # mount all mmc partitions
-    mount_all /fstab.tc2
+    mount_all /remount.tc2
 on post-fs-data
     # double check perms and set owner
     chown root root /devlog

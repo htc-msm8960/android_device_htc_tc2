@@ -29,7 +29,6 @@
 
 # Release Tools (commented out for now)
 # TARGET_RELEASETOOLS_EXTENSIONS := device/htc/totemc2
-
 # Require bootloader version (commented out for now)
 # TARGET_BOARD_INFO_FILE ?= device/htc/totemc2/board-info.txt
 
@@ -39,11 +38,13 @@ TARGET_SPECIFIC_HEADER_PATH := device/htc/totemc2/include
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := totemc2
 
+TARGET_BOARD_PLATFORM := msm8930
+
 # Kernel
 BOARD_KERNEL_BASE := 0x80400000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=qcom
-BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01400000
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8
+BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01408000
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 TARGET_KERNEL_CONFIG := tc2_nocam_defconfig
 
@@ -98,7 +99,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/
 
 # Recovery
 #TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/totemc2/recovery/kernel
-TARGET_RECOVERY_FSTAB := device/htc/totemc2/rootdir/etc/fstab.qcom
+TARGET_RECOVERY_FSTAB := device/htc/totemc2/ramdisk/fstab.tc2
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 
