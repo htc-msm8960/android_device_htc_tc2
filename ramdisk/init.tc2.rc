@@ -18,13 +18,24 @@ on init
     mkdir /devlog 0700 root root
 
 on fs
+    # create firmware mount points
+    mkdir /firmware_radio 0771 system system
+    mkdir /firmware_q6 0771 system system
+
     # mount all mmc partitions
     mount_all /fstab.tc2
 
-    # msm8960 firmware partitions
-    mkdir /tombstones 0771 system system
+    mkdir /data/tombstones 0771 system system
+    symlink /data/tombstones /tombstones
+    mkdir /tombstones/modem 0771 system system
     mkdir /tombstones/lpass 0771 system system
-    
+    mkdir /tombstones/wcnss 0771 system system
+    mkdir /tombstones/dsps 0771 system system
+
+    # link firmware
+    exec /system/bin/sh /system/etc/init.qcom.radio_links.sh
+    exec /system/bin/sh /system/etc/init.qcom.q6_links.sh
+
     mount_all /remount.tc2
 on post-fs-data
     # double check perms and set owner
@@ -38,11 +49,19 @@ on boot
     # mount debugfs for systrace
     mount debugfs /sys/kernel/debug /sys/kernel/debug
 
-    # Chown polling nodes as needed from UI running on system server
     chown system system /persist
     chmod 0771 /persist
+
+    # Chown polling nodes as needed from UI running on system server
     chmod 0664 /sys/devices/platform/msm_sdcc.1/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.2/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.3/polling
+    chmod 0664 /sys/devices/platform/msm_sdcc.4/polling
+
     chown system system /sys/devices/platform/msm_sdcc.1/polling
+    chown system system /sys/devices/platform/msm_sdcc.2/polling
+    chown system system /sys/devices/platform/msm_sdcc.3/polling
+    chown system system /sys/devices/platform/msm_sdcc.4/polling
 
     # 4.3 requires this
     chmod 0644 /proc/cmdline
@@ -64,7 +83,16 @@ on boot
 
     # for modem link
     chown system system /sys/module/serial/parameters/modem_enabled
+
+    # radio
+    mkdir /data/radio 0770 radio radio
+    chmod 2770 /data/radio
     mkdir /dev/socket/qmux_radio 0770 radio radio
+    chmod 2770 /dev/socket/qmux_radio
+    mkdir /dev/socket/qmux_audio 0770 audio audio
+    chmod 2770 /dev/socket/qmux_audio
+    mkdir /dev/socket/qmux_bluetooth 0770 bluetooth bluetooth
+    chmod 2770 /dev/socket/qmux_bluetooth
 
     # wifi
     mkdir /data/misc/wifi 0770 wifi wifi
@@ -147,18 +175,6 @@ on boot
     # cyttsp update
     write /sys/devices/i2c-3/3-0024/cyttsp_update_fw 1
 
-#set diag permissions
-    chown radio radio /dev/diag
-    chown radio radio /dev/diag_mdm
-    chown radio radio /dev/htcdiag
-    chown radio radio /dev/diag_arm9
-    chown radio radio /dev/btdiag
-    chmod 0660 /dev/diag
-    chmod 0660 /dev/diag_mdm
-    chmod 0660 /dev/htcdiag
-    chmod 0660 /dev/diag_arm9
-    chmod 0660 /dev/btdiag
-
 # Services start here
 
 service abld /system/bin/mm-abl-daemon
@@ -233,13 +249,23 @@ service qcom-sh /system/bin/sh /init.qcom.sh
 service qmuxd /system/bin/qmuxd
     class main
     user radio
-    group radio
+    group radio qcom_diag
+
+service ril-daemon /system/bin/rild
+    class main
+    socket rild stream 660 root radio
+    socket rild-debug stream 660 radio system
+    socket rild-htc stream 660 radio system
+    socket aepls001 stream 660 radio system
+    user root
+    group radio cache inet misc audio sdcard_rw log diag
 
 service rmt_storage /system/bin/rmt_storage modem_st1 modem_st2 recovery radio_config
     class core
     user root
 
 service thermald /system/bin/thermald
+    class main
     user root
     group root
     disabled
@@ -275,15 +301,6 @@ on property:init.svc.wpa_supplicant=stopped
 
 on property:persist.thermal.monitor=true
     start thermald
-
-service ril-daemon /system/bin/rild
-    class main
-    socket rild stream 660 root radio
-    socket rild-debug stream 660 radio system
-    socket rild-htc stream 660 radio system
-    socket aepls001 stream 660 radio system
-    user root
-    group radio cache inet misc audio sdcard_rw log diag
 
 on property:persist.timed.enable=true
     start time_daemon
