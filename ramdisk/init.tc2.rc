@@ -1,6 +1,6 @@
 import init.tc2.usb.rc
 
-on early-init
+on init
     mkdir /storage 0050 system sdcard_r
     mkdir /storage/sdcard0 0000 system system
     mkdir /storage/sdcard1 0000 system system
@@ -14,7 +14,6 @@ on early-init
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
 
-on init
     mkdir /devlog 0700 root root
 
 on fs
