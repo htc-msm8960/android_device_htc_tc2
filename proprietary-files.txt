@@ -5,8 +5,6 @@ etc/agps_rm
 bin/akmd
 bin/cand
 bin/charging
-bin/ewtzmud
-bin/hci_qcomm_init
 bin/mm-qcamera-daemon
 bin/mpdecision
 bin/netmgrd
@@ -14,31 +12,52 @@ bin/netsharing
 bin/qmuxd
 bin/rmt_storage
 bin/thermald
-bin/zchgd
 
 # Audio
 lib/libacdbloader.so
 lib/libaudcal.so
 
 # Camera
+lib/hw/vendor-camera.msm8960.so
+lib/libBeautyChat.so
+lib/libcameraasd.so
+lib/libcameraface.so
+lib/libcamerapp.so
+lib/libcam_oem_plugin.so
 lib/libchromatix_s5k3h2yx_default_video.so
 lib/libchromatix_s5k3h2yx_hdr.so
 lib/libchromatix_s5k3h2yx_hfr.so
 lib/libchromatix_s5k3h2yx_preview.so
 lib/libchromatix_s5k3h2yx_zsl.so
-lib/libcameraface.so
-lib/libcamerapp.so
-lib/libcam_oem_plugin.so
-lib/libDxOAF.so
+lib/libchromatix_s5k6a1gx_default_video.so
+lib/libchromatix_s5k6a1gx_hdr.so
+lib/libchromatix_s5k6a1gx_hfr.so
+lib/libchromatix_s5k6a1gx_preview.so
+lib/libchromatix_s5k6a1gx_zsl.so
 lib/libgemini.so
+lib/libHTC_DIS.so
+lib/libhtccamera.so
+lib/libimage-jpeg-dec-omx-comp.so
+lib/libimage-jpeg-enc-omx-comp.so
+lib/libimage-omx-common.so
+lib/libmmcamera_faceproc.so
 lib/libmmcamera_frameproc.so
+lib/libmmcamera_hdr_lib.so
+lib/libmmcamera_image_stab.so
+lib/libmmcamera_interface2.so
 lib/libmmcamera_rawchipproc.so
-lib/libmmcamera_statsproc30.so
+lib/libmmcamera_statsproc31.so
+lib/libmmcamera_wavelet_lib.so
 lib/libmmipl.so
 lib/libmmjpeg.so
+lib/libmmmpod.so
+lib/libmmstillomx.so
 lib/liboemcamera.so
-lib/libOlaEngine.so
 lib/libposteffect.so
+
+# GPS
+lib/libgeofence.so
+lib/libloc_api_v02.so
 
 # Graphics
 lib/egl/eglsubAndroid.so
@@ -46,32 +65,30 @@ lib/egl/libEGL_adreno200.so
 lib/egl/libGLESv1_CM_adreno200.so
 lib/egl/libGLESv2_adreno200.so
 lib/egl/libq3dtools_adreno200.so
+lib/egl/libplayback_adreno200.so
 lib/libC2D2.so
 lib/libc2d2_z180.so
 lib/libgsl.so
+lib/libllvm-a3xx.so
+lib/libOpenCL.so
 lib/libOpenVG.so
 lib/libsc-a2xx.so
 
-# GPS
-lib/hw/gps.default.so
-lib/libgps.so
-lib/libgps.utils.so
-lib/libloc_adapter.so
-lib/libloc_api_v02.so
-lib/libloc_eng.so
-lib/libloc_ext.so
+# Graphics Firmware
+etc/firmware/a225p5_pm4.fw
+etc/firmware/a225_pfp.fw
+etc/firmware/a225_pm4.fw
+etc/firmware/a300_pfp.fw
+etc/firmware/a300_pm4.fw
+etc/firmware/leia_pfp_470.fw
+etc/firmware/leia_pm4_470.fw
+etc/firmware/vidc_1080p.fw
 
 # Media libraries
-lib/libmmosal.so
+lib/libI420colorconvert.so
 lib/libmm-color-convertor.so
-lib/libmmparser.so
-lib/libmmparser_divxdrmlib.so
-lib/libwvm.so
-lib/libWVStreamControlAPI_L3.so
 
-# Firmware
-etc/firmware/a300_pm4.fw
-etc/firmware/a300_pfp.fw
+# Modem Firmware
 etc/firmware/modem_fw.b00
 etc/firmware/modem_fw.b01
 etc/firmware/modem_fw.b02
@@ -105,6 +122,10 @@ etc/firmware/modem.b09
 etc/firmware/modem.b10
 etc/firmware/modem.mdt
 
+# NFC
+vendor/firmware/libpn544_fw.so
+lib/hw/nfc.tc2.so
+
 # Q6 firmware
 etc/firmware/q6.b00
 etc/firmware/q6.b01
@@ -135,7 +156,15 @@ lib/libril-qc-qmi-1.so
 lib/libril-qcril-hook-oem.so
 
 # Sensors
-lib/hw/sensors.default.so
+lib/hw/sensors.tc2.so
+lib/libimu.so
+lib/libmllite.so
+lib/libmlplatform.so
+lib/libmpl.so
+
+# Widevine
+lib/libwvm.so
+lib/libWVStreamControlAPI_L3.so
 
 # WLAN/BT
 etc/firmware/fw_bcm4334_p2p.bin
