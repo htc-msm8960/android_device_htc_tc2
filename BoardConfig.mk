@@ -37,13 +37,12 @@ TARGET_SPECIFIC_HEADER_PATH := device/htc/totemc2/include
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := totemc2
-
-TARGET_BOARD_PLATFORM := msm8930
+TARGET_BOARD_PLATFORM := msm8960
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80400000
 BOARD_KERNEL_PAGESIZE := 2048
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=totemc2 androidboot.selinux=permissive 
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01408000
 TARGET_KERNEL_SOURCE := kernel/htc/msm8960
 TARGET_KERNEL_CONFIG := tc2_nocam_defconfig
@@ -51,23 +50,27 @@ TARGET_KERNEL_CONFIG := tc2_nocam_defconfig
 # Audio
 BOARD_USES_FLUENCE_INCALL := true
 BOARD_USES_SEPERATED_AUDIO_INPUT := true
+BOARD_HAVE_HTC_CSDCLIENT := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH_BCM := true
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/htc/totemc2/bluetooth
+BOARD_BLUEDROID_VENDOR_CONF := device/htc/totemc2/bluetooth/libbt_vndcfg.txt
+BOARD_BLUETOOTH_USES_HCIATTACH_PROPERTY := false
 
 # Camera
-USE_CAMERA_STUB := false
 BOARD_NEEDS_MEMORYHEAPPMEM := true
-COMMON_GLOBAL_CFLAGS += -DQCOM_BSP_CAMERA_ABI_HACK
 COMMON_GLOBAL_CFLAGS += -DMR0_CAMERA_BLOB
 COMMON_GLOBAL_CFLAGS += -DDISABLE_HW_ID_MATCH_CHECK
 COMMON_GLOBAL_CFLAGS += -DHTC_CAMERA_HARDWARE
+USE_DEVICE_SPECIFIC_CAMERA := true
 
 # GPS
 BOARD_HAVE_NEW_QC_GPS := true
 
 # Use libril in the device tree
 BOARD_PROVIDES_LIBRIL := true
+COMMON_GLOBAL_CFLAGS += -DNEW_LIBRIL_HTC
 
 # Wifi related defines
 WIFI_BAND                        := 802_11_ABG
@@ -80,6 +83,8 @@ WIFI_DRIVER_FW_PATH_STA          := "/system/etc/firmware/fw_bcm4334.bin"
 WIFI_DRIVER_FW_PATH_AP           := "/system/etc/firmware/fw_bcm4334_apsta.bin"
 WIFI_DRIVER_FW_PATH_P2P          := "/system/etc/firmware/fw_bcm4334_p2p.bin"
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_MODULE_ARG           := "firmware_path=/system/etc/firmware/fw_bcm4334.bin nvram_path=/system/etc/calibration.gpio4"
+WIFI_DRIVER_MODULE_AP_ARG        := "firmware_path=/system/etc/firmware/fw_bcm4334_apsta.bin nvram_path=/system/etc/calibration.gpio4"
 WIFI_DRIVER_MODULE_NAME          := bcmdhd
 WIFI_DRIVER_MODULE_PATH          := "/system/lib/modules/bcmdhd.ko"
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
