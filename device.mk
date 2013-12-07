@@ -83,8 +83,8 @@ PRODUCT_COPY_FILES += \
 #    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
 
 # Camera
-#PRODUCT_PACKAGES += \
-#    camera.msm8960
+PRODUCT_PACKAGES += \
+    camera.msm8960
 
 # GPS
 PRODUCT_PACKAGES += \
