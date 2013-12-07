@@ -79,8 +79,8 @@ PRODUCT_COPY_FILES += \
 #else
 #    NFCEE_ACCESS_PATH := $(LOCAL_PATH)/configs/nfcee_access_debug.xml
 #endif
-#PRODUCT_COPY_FILES += \
-#    $(NFCEE_ACCESS_PATH):system/etc/nfcee_access.xml
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/nfcee_access.xml:system/etc/nfcee_access.xml
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -113,8 +113,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.timed.enable=true \
     persist.gps.qmienabled=true \
-    ro.opengles.version=196608 \
-    ro.baseband.arch=msm \
+    ro.setupwizard.enable_bypass=1 \
+    dalvik.vm.lockprof.threshold=500 \
+    ro.com.google.locationfeatures=1 \
+    dalvik.vm.dexopt-flags=m=y
 
 # Recovery
 PRODUCT_COPY_FILES += \
