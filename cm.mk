@@ -12,7 +12,7 @@ TARGET_SCREEN_WIDTH := 540
 $(call inherit-product, vendor/cm/config/common_full_phone.mk)
 
 # Inherit device configuration
-$(call inherit-product, device/htc/totemc2/device_totemc2.mk)
+$(call inherit-product, device/htc/totemc2/device.mk)
 
 # Device naming
 PRODUCT_DEVICE := totemc2
