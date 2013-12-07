@@ -157,10 +157,6 @@ lib/libril-qcril-hook-oem.so
 
 # Sensors
 lib/hw/sensors.tc2.so
-lib/libimu.so
-lib/libmllite.so
-lib/libmlplatform.so
-lib/libmpl.so
 
 # Widevine
 lib/libwvm.so
