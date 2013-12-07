@@ -118,7 +118,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Recovery
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/ramdisk/fstab.tc2:recovery/root/fstab.tc2
+    $(LOCAL_PATH)/rootdir/etc/fstab.tc2:recovery/root/fstab.tc2
 
 # Recovery
 PRODUCT_PACKAGES += \

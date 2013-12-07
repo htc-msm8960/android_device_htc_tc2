@@ -105,7 +105,7 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/msm_hsusb/gadget/lun%d/
 
 # Recovery
 #TARGET_PREBUILT_RECOVERY_KERNEL := device/htc/totemc2/recovery/kernel
-TARGET_RECOVERY_FSTAB := device/htc/totemc2/ramdisk/fstab.tc2
+TARGET_RECOVERY_FSTAB := device/htc/totemc2/rootdir/etc/fstab.tc2
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 
